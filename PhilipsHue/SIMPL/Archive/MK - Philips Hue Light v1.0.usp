@@ -1,0 +1,163 @@
+#CATEGORY "46" "Lighting" // Custom
+#SYMBOL_NAME "MK - Philips Hue Light v1.0"
+
+#INCLUDEPATH "C:\\Users\\mklucznyk\\Documents\\Visual Studio 2008\\Projects\\PhilipsHue\\PhilipsHue\\bin"
+#USER_SIMPLSHARP_LIBRARY "PhilipsHue"
+
+//****DIRECTIVES****
+#DEFAULT_VOLATILE
+#ENABLE_STACK_CHECKING 
+#ENABLE_TRACE
+
+//****IO****
+Digital_Input _skip_, GetLight, LightOn, LightOff, LightSendRGB;
+Analog_Input LightBri, LightHue, LightSat, LightRed, LightGreen, LightBlue;
+String_Input LightNameFromBridge[255];
+
+Digital_Output _skip_, LightIsReachable, LightIsOn, LightIsOff;
+Analog_Output LightBriValue, LightHueValue, LightSatValue, LightRedValue, LightGreenValue, LightBlueValue;
+String_Output LightType;
+
+//****VARS****
+PhilipsHueLight Light;
+
+String_Parameter Light_Name[255];
+
+Integer nType, nRGBSemephore;
+
+//****FUNCTIONS****
+Callback Function NewLight(string sName, string sType, string sState, integer nBri, integer nHue, integer nSat, 
+	integer nRed, integer nGreen, integer nBlue, string sReachable)
+{
+	//LightName = sName;
+	LightType = sType;
+	If(sType = "Extended color light") nType = 1;
+	Else nType = 0;
+	LightBriValue = nBri;
+	LightHueValue = nHue;
+	LightSatValue = nSat;
+	LightRedValue = nRed;
+	LightGreenValue = nGreen;
+	LightBlueValue = nBlue;
+		
+	If(sState = "True")
+	{
+		LightIsOn = ON;
+		LightIsOff = OFF;
+	} 
+		
+	Else If(sState = "False")
+	{
+		LightIsOn = OFF;
+		LightIsOff = ON;
+	}
+	
+	If(sReachable = "True") LightIsReachable = ON;
+	Else If(sReachable = "False") LightIsReachable = OFF;
+}
+
+Callback Function onTrace(string sTrace)
+{
+	Trace("%s", sTrace);
+}
+
+//****EVENTS**** 
+Push GetLight
+{
+	Light.GetLight();
+}
+
+Push LightOn
+{
+	If(LightIsReachable)
+	{
+		Light.LightState("on", 1, 0, 0);
+		LightIsOn = ON;
+		LightIsOff = OFF;
+	}
+}
+
+Push LightOff
+{
+	If(LightIsReachable)
+	{
+		Light.LightState("on", 0, 0, 0); 
+		LightIsOn = OFF;
+		LightIsOff = ON;
+	}
+}
+
+Push LightSendRGB
+{
+	If(LightIsReachable) 
+	{
+		Light.LightState("xy", LightRed, LightGreen, LightBlue);
+		LightRedValue = LightRed;
+		LightGreenValue = LightGreen;
+		LightBlueValue = LightBlue;
+	}	
+}
+
+Threadsafe Change LightBri
+{
+	Integer nVal;
+	
+	If(LightIsReachable)
+	{
+		nVal = 0;
+		
+		While(nVal <> LightBri)
+		{
+			nVal = LightBri;
+			Light.LightState("bri", nVal, 0, 0);
+			LightBriValue = nVal;
+			Delay(20);
+		} 
+	}
+}
+
+ThreadSafe Change LightHue
+{
+	Integer nVal;
+	
+	If(nType = 1 && LightIsReachable)
+	{
+		While(nVal <> LightHue)
+		{
+			nVal = LightHue;
+			Light.LightState("hue", nVal, 0, 0);
+			LightHueValue = nVal;
+			Delay(20);
+		}
+	}
+}
+
+ThreadSafe Change LightSat
+{
+	Integer nVal;
+	
+	If(nType = 1 && LightIsReachable)
+	{
+		While(nVal <> LightSat)
+		{
+			nVal = LightSat;
+			Light.LightState("sat", nVal, 0, 0);
+			LightSatValue = nVal;
+			Delay(20);
+		}
+	}
+}
+
+Change LightNameFromBridge
+{
+	If(len(LightNameFromBridge)) Light.Address = LightNameFromBridge;
+} 
+
+//**MAIN**
+Function Main()
+{
+	If(len(Light_Name)) Light.Address = Light_Name;
+	RegisterDelegate(Light, newLightInfo, newLight);
+	RegisterDelegate(Light, newTrace, onTrace);
+}
+

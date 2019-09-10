@@ -1,0 +1,21 @@
+C:\Users\mklucznyk\Documents\Visual Studio 2008\Projects\PhilipsHue\PhilipsHue\bin\PhilipsHue.dll
+C:\Users\mklucznyk\Documents\Visual Studio 2008\Projects\PhilipsHue\PhilipsHue\bin\PhilipsHue.pdb
+C:\Users\mklucznyk\Documents\Visual Studio 2008\Projects\PhilipsHue\PhilipsHue\bin\Newtonsoft.Json.Compact.dll
+C:\Users\mklucznyk\Documents\Visual Studio 2008\Projects\PhilipsHue\PhilipsHue\bin\SimplSharpCustomAttributesInterface.dll
+C:\Users\mklucznyk\Documents\Visual Studio 2008\Projects\PhilipsHue\PhilipsHue\bin\SimplSharpHelperInterface.dll
+C:\Users\mklucznyk\Documents\Visual Studio 2008\Projects\PhilipsHue\PhilipsHue\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\mklucznyk\Documents\Visual Studio 2008\Projects\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.dll
+C:\Users\mklucznyk\Documents\Visual Studio 2008\Projects\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.pdb
+C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\PhilipsHue\bin\PhilipsHue.dll
+C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\PhilipsHue\bin\PhilipsHue.pdb
+C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\PhilipsHue\bin\Newtonsoft.Json.Compact.dll
+C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\PhilipsHue\bin\SimplSharpCustomAttributesInterface.dll
+C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\PhilipsHue\bin\SimplSharpHelperInterface.dll
+C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\PhilipsHue\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.dll
+C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.pdb
+\\Mac\Dropbox\VS Projects\PhilipsHue\PhilipsHue\bin\PhilipsHue.dll
+\\Mac\Dropbox\VS Projects\PhilipsHue\PhilipsHue\bin\PhilipsHue.pdb
+\\Mac\Dropbox\VS Projects\PhilipsHue\PhilipsHue\obj\Debug\ResolveAssemblyReference.cache
+\\Mac\Dropbox\VS Projects\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.dll
+\\Mac\Dropbox\VS Projects\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.pdb

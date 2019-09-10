@@ -1,0 +1,38 @@
+13/05/2017 9:59:55 AM, Info: Initializing SIMPLSharp Services...
+13/05/2017 9:59:56 AM, Info: ProjectInfo successfully initialized.
+13/05/2017 9:59:59 AM, Info: Commiting verification transaction...
+13/05/2017 9:59:59 AM, Info: Saving project information...
+13/05/2017 10:01:46 AM, Info: Initializing SIMPLSharp Services...
+13/05/2017 10:01:46 AM, Info: ProjectInfo successfully initialized.
+13/05/2017 10:01:47 AM, Info: Verifying archive C:\\Users\\mklucznyk\\Dropbox (Personal)\\VS Projects\\PhilipsHue\\PhilipsHue\bin\PhilipsHue.clz...
+13/05/2017 10:01:48 AM, Exception: Error locating assembly SimplSharpHelperInterface.dll in include4.dat 
+ Error: Could not find file 'C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\SIMPL\SPlsWork\SimplSharpHelperInterface.dll'.
+
+13/05/2017 10:01:48 AM, Exception: Could not find file 'C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\SIMPL\SPlsWork\SimplSharpHelperInterface.dll'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.Move(String sourceFileName, String destFileName)
+   at Ionic.Zip.ZipEntry.InternalExtract(String baseDir, Stream outstream, String password)
+   at Ionic.Zip.ZipFile.ExtractSelectedEntries(String selectionCriteria, String directoryPathInArchive, String extractDirectory, ExtractExistingFileAction extractExistingFile)
+   at Crestron.Tools.SIMPLSharp.Services.Utilities.Zipper.Unzip(String zipFileName, String targetFolder, Options zipOptions)
+   at g.a(AssemblyReferenceInfo A_0, ProjectInfo A_1)
+   at h.f(FileVerificationResult A_0)
+13/05/2017 10:01:48 AM, Exception: Could not find file 'C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\SIMPL\SPlsWork\SimplSharpHelperInterface.dll'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.Move(String sourceFileName, String destFileName)
+   at Ionic.Zip.ZipEntry.InternalExtract(String baseDir, Stream outstream, String password)
+   at Ionic.Zip.ZipFile.ExtractSelectedEntries(String selectionCriteria, String directoryPathInArchive, String extractDirectory, ExtractExistingFileAction extractExistingFile)
+   at Crestron.Tools.SIMPLSharp.Services.Utilities.Zipper.Unzip(String zipFileName, String targetFolder, Options zipOptions)
+   at g.a(AssemblyReferenceInfo A_0, ProjectInfo A_1)
+   at h.f(FileVerificationResult A_0)
+   at h.a(String A_0, ArchiveVerificationResult A_1, CopyType A_2)
+13/05/2017 10:01:48 AM, Exception: Could not find file 'C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\SIMPL\SPlsWork\SimplSharpHelperInterface.dll'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.Move(String sourceFileName, String destFileName)
+   at Ionic.Zip.ZipEntry.InternalExtract(String baseDir, Stream outstream, String password)
+   at Ionic.Zip.ZipFile.ExtractSelectedEntries(String selectionCriteria, String directoryPathInArchive, String extractDirectory, ExtractExistingFileAction extractExistingFile)
+   at Crestron.Tools.SIMPLSharp.Services.Utilities.Zipper.Unzip(String zipFileName, String targetFolder, Options zipOptions)
+   at g.a(AssemblyReferenceInfo A_0, ProjectInfo A_1)
+   at h.f(FileVerificationResult A_0)
+   at h.a(String A_0, ArchiveVerificationResult A_1, CopyType A_2)
+   at h.a(String A_0, ArchiveVerificationOptions A_1)
+   at Crestron.Tools.SIMPLSharp.Services.SIMPLSharpService.VerifyArchive(String archiveFilename, ArchiveVerificationOptions options)

@@ -1,0 +1,132 @@
+#CATEGORY "46" "Lighting" // Custom
+#SYMBOL_NAME "MK - Philips Hue Group v1.1"
+
+#INCLUDEPATH "C:\\Users\\mklucznyk\\Dropbox (Personal)\\VS Projects\\PhilipsHue\\PhilipsHue\bin"
+#USER_SIMPLSHARP_LIBRARY "PhilipsHue"
+
+//****DIRECTIVES****
+#DEFAULT_VOLATILE
+#ENABLE_STACK_CHECKING
+
+//****IO****
+Digital_Input _skip_, GetGroup, GroupOn, GroupOff, GroupSendRGB;
+Analog_Input GroupBri, GroupHue, GroupSat, GroupRed, GroupGreen, GroupBlue;
+String_Input GroupNameFromBridge[255];
+
+Digital_Output _skip_, GroupIsOn, GroupIsOff, GroupAllOn, GroupAnyOn;
+Analog_Output GroupBriValue, GroupHueValue, GroupSatValue, GroupRedValue, GroupGreenValue, GroupBlueValue;
+String_Output GroupType;
+
+//****VARS****
+PhilipsHueGroup Group;
+
+String_Parameter Group_Name[255];
+
+Integer nType;
+
+//****FUNCTIONS****
+Callback Function NewGroup(string sName, string sType, string sAllOn, string sAnyOn,
+	string sState, integer nBri, integer nHue, integer nSat, integer nRed, integer nGreen, integer nBlue)
+{
+	//GroupName = sName;
+	GroupType = sType;
+	GroupBriValue = nBri;
+	GroupHueValue = nHue;
+	GroupSatValue = nSat;
+	GroupRedValue = nRed;
+	GroupGreenValue = nGreen;
+	GroupBlueValue = nBlue;
+	             
+	              
+	If(sAllOn = "True") GroupAllOn = ON;	
+	Else If(sAllOn = "False") GroupAllOn = OFF;
+	
+	If(sAnyOn = "True") GroupAnyOn = ON;
+	Else If(sAnyOn = "False") GroupAnyOn = OFF;
+		
+	If(sState = "True")
+	{
+		GroupIsOn = ON;
+		GroupIsOff = OFF;
+	} 
+		
+	Else If(sState = "False")
+	{
+		GroupIsOn = OFF;
+		GroupIsOff = ON;
+	}
+}
+
+//****EVENTS**** 
+Push GroupOn
+{
+	Group.GroupState("on", 1, 0, 0);
+	GroupIsOn = ON;
+	GroupIsOff = OFF;
+}
+
+Push GroupOff
+{
+	Group.GroupState("on", 0, 0, 0);
+	GroupIsOn = OFF;
+	GroupIsOff = ON;
+}
+
+Push GroupSendRGB
+{
+	Group.GroupState("xy", GroupRed, GroupGreen, GroupBlue);
+	GroupRedValue = GroupRed;
+	GroupGreenValue = GroupGreen;
+	GroupBlueValue = GroupBlue;	
+}
+
+Threadsafe Change GroupBri
+{
+	Integer nVal;
+	
+	nVal = 0;
+	
+	While(nVal <> GroupBri)
+	{
+		nVal = GroupBri;
+		Group.GroupState("bri", nVal, 0 , 0);
+		Delay(20);
+	}
+}
+
+ThreadSafe Change GroupHue
+{
+	Integer nVal;
+	
+	While(nVal <> GroupHue)
+	{
+		nVal = GroupHue;
+		Group.GroupState("hue", nVal, 0, 0);
+		Delay(20);
+	}
+}
+
+ThreadSafe Change GroupSat
+{
+	Integer nVal;
+	
+	While(nVal <> GroupSat)
+	{
+		nVal = GroupSat;
+		Group.GroupState("sat", nVal, 0, 0);
+		Delay(20);
+	}
+}
+
+Change GroupNameFromBridge
+{   
+	If(len(GroupNameFromBridge)) Group.Address = GroupNameFromBridge;
+}	 
+
+//**MAIN**
+Function Main()
+{
+	If(len(Group_Name)) Group.Address = Group_Name;
+	RegisterDelegate(Group, newGroupInfo, newGroup); 
+}
+

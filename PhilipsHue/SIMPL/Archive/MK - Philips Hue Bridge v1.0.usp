@@ -1,0 +1,75 @@
+#CATEGORY "46" "Lighting" // Custom
+#SYMBOL_NAME "MK - Philips Hue Bridge v1.0"
+
+#INCLUDEPATH "C:\\Users\\mklucznyk\\Documents\\Visual Studio 2008\\Projects\\PhilipsHue\\PhilipsHue\\bin"
+#USER_SIMPLSHARP_LIBRARY "PhilipsHue"
+
+//****DIRECTIVES****
+#DEFAULT_VOLATILE
+#ENABLE_STACK_CHECKING
+
+//****IO****
+Digital_Input Link, GetLights;
+String_Input IPAddress[16], Username[1000];
+
+Digital_Output IsLinked;
+String_Output BridgeName, BridgeVersion, Status, LightName[50], GroupName[50,50];
+
+//****VARS****
+PhilipsHueBridgeConfig BridgeConfig;
+NonVolatile Integer nLinkStat;
+
+//****FUNCTIONS****
+Callback Function ReceiveConfig(string sName, string sVersion)
+{
+	BridgeName = sName;
+	BridgeVersion = sVersion;
+	If(nLinkStat <> 1) 
+	{
+		nLinkStat = 1;
+		IsLinked = ON;
+	}
+	
+}
+
+Callback Function ReceiveError(string sError)
+{
+	Status = sError;
+}
+
+Callback Function ReceiveLight(integer nID, string sName)
+{
+	LightName[nID] = sName;
+}
+
+Callback Function ReceiveGroup(integer nID, string sName)
+{
+	GroupName[nID] = sName;
+}
+
+//****EVENTS****
+Push GetLights
+{ 
+	BridgeConfig.GetLights();
+} 
+
+Threadsafe Change IPAddress
+{
+	PhilipsHueBridge.IPAddress = IPAddress;
+}
+
+Threadsafe Change Username
+{
+	PhilipsHueBridge.Username = Username;
+}
+
+//**MAIN**
+Function Main()
+{
+	RegisterDelegate(PhilipsHueBridge, SendConfigFn, ReceiveConfig);
+	RegisterDelegate(PhilipsHueBridge, SendErrorFn, ReceiveError);
+	RegisterDelegate(PhilipsHueBridge, SendLightFn, ReceiveLight);
+	RegisterDelegate(PhilipsHueBridge, SendGroupFn, ReceiveGroup); 
+	
+	If(nLinkStat = 1) IsLinked = ON;
+}
