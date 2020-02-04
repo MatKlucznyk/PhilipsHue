@@ -19,3 +19,8 @@ C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\PhilipsHue\obj\Debu
 \\Mac\Dropbox\VS Projects\PhilipsHue\PhilipsHue\obj\Debug\ResolveAssemblyReference.cache
 \\Mac\Dropbox\VS Projects\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.dll
 \\Mac\Dropbox\VS Projects\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.pdb
+D:\Programming\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\bin\PhilipsHue.dll
+D:\Programming\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\bin\PhilipsHue.pdb
+D:\Programming\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\ResolveAssemblyReference.cache
+D:\Programming\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.dll
+D:\Programming\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.pdb

@@ -61,20 +61,19 @@ namespace PhilipsHue
             ushort red = 0;
             ushort green = 0;
             ushort blue = 0;
-            
-            if (float.Parse(Data.XY[0]) > 0)
+
+            if (Data.XY != null)
             {
-                newTrace(String.Format("x={0} y={1}", Data.XY[0], Data.XY[1]));
+                if (float.Parse(Data.XY[0]) > 0)
+                {
+                    ColourConverter.Point point = new ColourConverter.Point(double.Parse(Data.XY[0]), double.Parse(Data.XY[1]));
+                    ColourConverter.RGBColour RGB = ColourConverter.XYtoRGB(point, Data.Model);
+                    red = Convert.ToUInt16(RGB.red * 255);
+                    green = Convert.ToUInt16(RGB.green * 255);
+                    blue = Convert.ToUInt16(RGB.blue * 255);
 
-                ColourConverter.Point point = new ColourConverter.Point(double.Parse(Data.XY[0]), double.Parse(Data.XY[1]));
-                ColourConverter.RGBColour RGB = ColourConverter.XYtoRGB(point, Data.Model);
-                red = Convert.ToUInt16(RGB.red * 255);
-                green = Convert.ToUInt16(RGB.green * 255);
-                blue = Convert.ToUInt16(RGB.blue * 255);
-                
+                }
             }
-
-            newTrace(String.Format("r={0} g={1} b={2}", red, green, blue));
 
             newLightInfo(Data.Name, Data.Type, Data.On.ToString(), Data.Bri, Data.Hue, Data.Sat, red, green,
                 blue, Data.Reachable.ToString());

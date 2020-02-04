@@ -89,109 +89,121 @@ namespace PhilipsHue
 
         static public void SendCommand(string url, string body, RequestType requestType, int type, int ID)
         {
-            using (HttpClient client = new HttpClient())
+            try
             {
-                HttpClientRequest request = new HttpClientRequest();
-                HttpClientResponse response;
-
-                client.KeepAlive = false;
-                request.RequestType = requestType;
-                request.Url.Parse(url);
-                request.ContentString = body;
-
-                response = client.Dispatch(request);
-
-                if (response.ContentString.Contains("\"error\":{\"type\":1,\"address\":\"\",\"description\":\"unauthorized user\""))
+                using (HttpClient client = new HttpClient())
                 {
-                    SendErrorFn("Unauthorized user");
-                }
+                    HttpClientRequest request = new HttpClientRequest();
 
-                else if (response.ContentString.Contains("\"error\":{\"type\":101,\"address\":\"\",\"description\":\"link button not pressed\""))
-                {
-                    SendErrorFn("Press link button on bridge and try again");
-                }
+                    client.TimeoutEnabled = true;
+                    client.Timeout = 10;
+                    request.RequestType = requestType;
+                    request.Url.Parse(url);
+                    request.ContentString = body;
 
-                else if (response.ContentString.Contains("[{\"success\":{\"username\":"))
-                {
-                    var temp = response.ContentString.Split('"');
+                    HttpClientResponse response = client.Dispatch(request);
 
-                    Username = temp[5];
-
-                    CrestronDataStoreStatic.SetLocalStringValue("username", temp[5]);
-
-                    PhilipsHueBridgeConfig GL = new PhilipsHueBridgeConfig();
-                    GL.GetLights();
-                }
-
-                else if (type == 1)
-                {
-                    DataDump DD = JsonConvert.DeserializeObject<DataDump>(response.ContentString);
-
-                    SendConfigFn(DD.config.name, DD.config.swversion);
-
-                    foreach (var item in DD.lights)
+                    if (response.ContentString.Contains("\"error\":{\"type\":1,\"address\":\"\",\"description\":\"unauthorized user\""))
                     {
-                        SendLightFn((ushort)item.Key, DD.lights[item.Key].name);
+                        SendErrorFn("Unauthorized user");
+                    }
 
-                        if (LightClient.ContainsKey(DD.lights[item.Key].name))
+                    else if (response.ContentString.Contains("\"error\":{\"type\":101,\"address\":\"\",\"description\":\"link button not pressed\""))
+                    {
+                        SendErrorFn("Press link button on bridge and try again");
+                    }
+
+                    else if (response.ContentString.Contains("[{\"success\":{\"username\":"))
+                    {
+                        var temp = response.ContentString.Split('"');
+
+                        Username = temp[5];
+
+                        CrestronDataStoreStatic.SetLocalStringValue("username", temp[5]);
+
+                        PhilipsHueBridgeConfig GL = new PhilipsHueBridgeConfig();
+                        GL.GetLights();
+                    }
+
+                    else if (type == 1)
+                    {
+                        DataDump DD = JsonConvert.DeserializeObject<DataDump>(response.ContentString);
+
+                        SendConfigFn(DD.config.name, DD.config.swversion);
+
+                        foreach (var item in DD.lights)
                         {
-                            if (DD.lights[item.Key].state.hue > 0 || DD.lights[item.Key].state.sat > 0)
+                            SendLightFn((ushort)item.Key, DD.lights[item.Key].name);
+
+                            if (LightClient.ContainsKey(DD.lights[item.Key].name))
                             {
-                                LightClient[DD.lights[item.Key].name].FireOnLightDataChange(new LightDataReceivedEventArgs(DD.lights[item.Key].name, DD.lights[item.Key].modelid, DD.lights[item.Key].type, DD.lights[item.Key].state.on,
-                                    DD.lights[item.Key].state.bri, DD.lights[item.Key].state.hue, DD.lights[item.Key].state.sat, DD.lights[item.Key].state.xy, DD.lights[item.Key].state.reachable, item.Key));
+                                if (DD.lights[item.Key].state.hue > 0 || DD.lights[item.Key].state.sat > 0)
+                                {
+                                    LightClient[DD.lights[item.Key].name].FireOnLightDataChange(new LightDataReceivedEventArgs(DD.lights[item.Key].name, DD.lights[item.Key].modelid, DD.lights[item.Key].type, DD.lights[item.Key].state.on,
+                                        DD.lights[item.Key].state.bri, DD.lights[item.Key].state.hue, DD.lights[item.Key].state.sat, DD.lights[item.Key].state.xy, DD.lights[item.Key].state.reachable, item.Key));
+                                }
+
+                                else
+                                {
+                                    List<string> empty = new List<string>();
+                                    empty.Add("0.0");
+                                    empty.Add("0.0");
+
+                                    LightClient[DD.lights[item.Key].name].FireOnLightDataChange(new LightDataReceivedEventArgs(DD.lights[item.Key].name, DD.lights[item.Key].modelid, DD.lights[item.Key].type, DD.lights[item.Key].state.on,
+                                        DD.lights[item.Key].state.bri, 0, 0, empty, DD.lights[item.Key].state.reachable, item.Key));
+                                }
                             }
+                        }
 
-                            else
+                        foreach (var item in DD.groups)
+                        {
+                            SendGroupFn((ushort)item.Key, DD.groups[item.Key].name);
+
+                            if (GroupClient.ContainsKey(DD.groups[item.Key].name))
                             {
-                                List<string> empty = new List<string>();
-                                empty.Add("0.0");
-                                empty.Add("0.0");
+                                if (DD.groups[item.Key].action.hue > 0 || DD.groups[item.Key].action.sat > 0)
+                                {
+                                    GroupClient[DD.groups[item.Key].name].FireOnGroupDataChange(new GroupDataReceivedEventArgs(DD.groups[item.Key].name, DD.groups[item.Key].type, DD.groups[item.Key].state.all_on,
+                                    DD.groups[item.Key].state.any_on, DD.groups[item.Key].action.on, DD.groups[item.Key].action.bri, DD.groups[item.Key].action.hue, DD.groups[item.Key].action.sat,
+                                    DD.groups[item.Key].action.xy, item.Key));
+                                }
 
-                                LightClient[DD.lights[item.Key].name].FireOnLightDataChange(new LightDataReceivedEventArgs(DD.lights[item.Key].name, DD.lights[item.Key].modelid, DD.lights[item.Key].type, DD.lights[item.Key].state.on,
-                                    DD.lights[item.Key].state.bri, 0, 0, empty, DD.lights[item.Key].state.reachable, item.Key));
+                                else
+                                {
+                                    List<string> empty = new List<string>();
+                                    empty.Add("0.0");
+                                    empty.Add("0.0");
+
+                                    GroupClient[DD.groups[item.Key].name].FireOnGroupDataChange(new GroupDataReceivedEventArgs(DD.groups[item.Key].name, DD.groups[item.Key].type, DD.groups[item.Key].state.all_on,
+                                        DD.groups[item.Key].state.any_on, DD.groups[item.Key].action.on, DD.groups[item.Key].action.bri, 0, 0, empty, item.Key));
+                                }
                             }
                         }
                     }
 
-                    foreach (var item in DD.groups)
+                    else if (type == 3)
                     {
-                        SendGroupFn((ushort)item.Key, DD.groups[item.Key].name);
+                        Lights L = JsonConvert.DeserializeObject<Lights>(response.ContentString);
 
-                        if (GroupClient.ContainsKey(DD.groups[item.Key].name))
-                        {
-                            if (DD.groups[item.Key].action.hue > 0 || DD.groups[item.Key].action.sat > 0)
-                            {
-                                GroupClient[DD.groups[item.Key].name].FireOnGroupDataChange(new GroupDataReceivedEventArgs(DD.groups[item.Key].name, DD.groups[item.Key].type, DD.groups[item.Key].state.all_on,
-                                DD.groups[item.Key].state.any_on, DD.groups[item.Key].action.on, DD.groups[item.Key].action.bri, DD.groups[item.Key].action.hue, DD.groups[item.Key].action.sat,
-                                DD.groups[item.Key].action.xy, item.Key));
-                            }
+                        LightClient[L.name].FireOnLightDataChange(new LightDataReceivedEventArgs(L.name, L.modelid, L.type, L.state.on, L.state.bri, L.state.hue, L.state.sat, L.state.xy, L.state.reachable, ID));
+                    }
 
-                            else
-                            {
-                                List<string> empty = new List<string>();
-                                empty.Add("0.0");
-                                empty.Add("0.0");
+                    else if (type == 4)
+                    {
+                        Groups G = JsonConvert.DeserializeObject<Groups>(response.ContentString);
 
-                                GroupClient[DD.groups[item.Key].name].FireOnGroupDataChange(new GroupDataReceivedEventArgs(DD.groups[item.Key].name, DD.groups[item.Key].type, DD.groups[item.Key].state.all_on,
-                                    DD.groups[item.Key].state.any_on, DD.groups[item.Key].action.on, DD.groups[item.Key].action.bri, 0, 0, empty, item.Key));
-                            }
-                        }
+                        GroupClient[G.name].FireOnGroupDataChange(new GroupDataReceivedEventArgs(G.name, G.type, G.state.all_on, G.state.any_on, G.action.on, G.action.bri, G.action.hue, G.action.sat, G.action.xy, ID));
                     }
                 }
-
-                else if (type == 3)
-                {
-                    Lights L = JsonConvert.DeserializeObject<Lights>(response.ContentString);
-
-                    LightClient[L.name].FireOnLightDataChange(new LightDataReceivedEventArgs(L.name, L.modelid, L.type, L.state.on, L.state.bri, L.state.hue, L.state.sat, L.state.xy, L.state.reachable, ID));
-                }
-
-                else if (type == 4)
-                {
-                    Groups G = JsonConvert.DeserializeObject<Groups>(response.ContentString);
-
-                    GroupClient[G.name].FireOnGroupDataChange(new GroupDataReceivedEventArgs(G.name, G.type, G.state.all_on, G.state.any_on, G.action.on, G.action.bri, G.action.hue, G.action.sat, G.action.xy, ID));
-                }
+            }
+            catch (SocketException se)
+            {
+            }
+            catch (HttpException he)
+            {
+            }
+            catch (Exception e)
+            {
             }
         }
     }
