@@ -24,3 +24,11 @@ D:\Programming\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\Ph
 D:\Programming\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\ResolveAssemblyReference.cache
 D:\Programming\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.dll
 D:\Programming\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.pdb
+C:\Users\mathew.klucznyk\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\bin\PhilipsHue.dll
+C:\Users\mathew.klucznyk\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\bin\PhilipsHue.pdb
+C:\Users\mathew.klucznyk\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\bin\SimplSharpNewtonsoft.dll
+C:\Users\mathew.klucznyk\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\bin\SimplSharpReflectionInterface.dll
+C:\Users\mathew.klucznyk\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\bin\SimplSharpSQLHelperInterface.dll
+C:\Users\mathew.klucznyk\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\mathew.klucznyk\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.dll
+C:\Users\mathew.klucznyk\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.pdb
