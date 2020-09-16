@@ -1,6 +1,5 @@
 namespace PhilipsHue;
         // class declarations
-         class PhilipsHueGroup;
          class LightDataReceivedEventArgs;
          class GroupDataReceivedEventArgs;
          class ClientEvents;
@@ -14,28 +13,7 @@ namespace PhilipsHue;
          class Config;
          class DataDump;
          class User;
-     class PhilipsHueGroup 
-    {
-        // class delegates
-        delegate FUNCTION GroupInfo ( SIMPLSHARPSTRING name , SIMPLSHARPSTRING type , SIMPLSHARPSTRING allon , SIMPLSHARPSTRING anyOn , SIMPLSHARPSTRING on , INTEGER bri , INTEGER hue , INTEGER sat , INTEGER red , INTEGER green , INTEGER blue );
-
-        // class events
-        EventHandler OnGroupDataReceived ( PhilipsHueGroup sender, GroupDataReceivedEventArgs e );
-
-        // class functions
-        FUNCTION GroupState ( STRING type , INTEGER state1 , INTEGER state2 , INTEGER state3 );
-        FUNCTION GetGroup ();
-        STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
-        DelegateProperty GroupInfo newGroupInfo;
-        STRING Address[];
-    };
-
+         class PhilipsHueGroup;
      class ClientEvents 
     {
         // class delegates
@@ -45,8 +23,8 @@ namespace PhilipsHue;
         EventHandler OnGroupDataReceived ( ClientEvents sender, GroupDataReceivedEventArgs e );
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -68,8 +46,8 @@ namespace PhilipsHue;
         static FUNCTION SendConfigHandler ( STRING name , STRING ver );
         static FUNCTION SendErrorHandler ( STRING error );
         static FUNCTION SedndLightHandler ( INTEGER id , STRING name );
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         static STRING IPAddress[];
@@ -91,8 +69,8 @@ namespace PhilipsHue;
         // class functions
         FUNCTION Link ( STRING user );
         FUNCTION GetLights ();
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -112,8 +90,8 @@ namespace PhilipsHue;
         // class functions
         FUNCTION LightState ( STRING type , INTEGER state1 , INTEGER state2 , INTEGER state3 );
         FUNCTION GetLight ();
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -131,8 +109,8 @@ namespace PhilipsHue;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -150,8 +128,8 @@ namespace PhilipsHue;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -170,8 +148,8 @@ namespace PhilipsHue;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -186,8 +164,8 @@ namespace PhilipsHue;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -206,8 +184,8 @@ namespace PhilipsHue;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -224,8 +202,8 @@ namespace PhilipsHue;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
@@ -241,13 +219,35 @@ namespace PhilipsHue;
         // class events
 
         // class functions
-        STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
 
         // class variables
         INTEGER __class_id__;
 
         // class properties
         STRING devicetype[];
+    };
+
+     class PhilipsHueGroup 
+    {
+        // class delegates
+        delegate FUNCTION GroupInfo ( SIMPLSHARPSTRING name , SIMPLSHARPSTRING type , SIMPLSHARPSTRING allon , SIMPLSHARPSTRING anyOn , SIMPLSHARPSTRING on , INTEGER bri , INTEGER hue , INTEGER sat , INTEGER red , INTEGER green , INTEGER blue );
+
+        // class events
+        EventHandler OnGroupDataReceived ( PhilipsHueGroup sender, GroupDataReceivedEventArgs e );
+
+        // class functions
+        FUNCTION GroupState ( STRING type , INTEGER state1 , INTEGER state2 , INTEGER state3 );
+        FUNCTION GetGroup ();
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+        STRING_FUNCTION ToString ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+        DelegateProperty GroupInfo newGroupInfo;
+        STRING Address[];
     };
 
