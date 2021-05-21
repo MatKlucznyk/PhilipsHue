@@ -198,12 +198,15 @@ namespace PhilipsHue
             }
             catch (SocketException se)
             {
+                ErrorLog.Exception(se.Message, se);
             }
             catch (HttpException he)
             {
+                ErrorLog.Exception(he.Message, he);
             }
             catch (Exception e)
             {
+                ErrorLog.Exception(e.Message, e);
             }
         }
     }
