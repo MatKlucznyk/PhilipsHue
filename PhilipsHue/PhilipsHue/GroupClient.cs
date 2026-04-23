@@ -99,8 +99,6 @@ namespace PhilipsHue
                     body = String.Format("{{\"xy\":[{0}, {1}]}}", point.x, point.y);
                 }
 
-                //CrestronConsole.PrintLine(body);
-
                 PhilipsHueBridge.SendCommand(String.Format("http://{0}/api/{1}/groups/{2}/action", PhilipsHueBridge.IPAddress, PhilipsHueBridge.Username, ID),
                     body, RequestType.Put, 2, 0);
             }

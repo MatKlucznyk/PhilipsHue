@@ -1,0 +1,20 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  	<Target Name="AfterBuild">
+		<PropertyGroup>
+			<SimplOutputDir>$(SolutionDir)..\SIMPL</SimplOutputDir>
+		</PropertyGroup>
+
+		<!-- Ensure the SIMPL output folder exists -->
+		<MakeDir Directories="$(SimplOutputDir)" />
+
+		<Message Importance="high" Text="📦 Copying output files to SIMPL folder..." />
+
+		<!-- Copy files -->
+		<Copy SourceFiles="$(TargetDir)$(TargetName).clz"
+			  DestinationFiles="$(SimplOutputDir)\$(TargetName).clz"
+			  OverwriteReadOnlyFiles="true" />
+		<Copy SourceFiles="$(TargetDir)$(TargetName).dll"
+			  DestinationFiles="$(SimplOutputDir)\$(TargetName).dll"
+			  OverwriteReadOnlyFiles="true" />
+	</Target>
+</Project>

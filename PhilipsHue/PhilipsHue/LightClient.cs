@@ -1,11 +1,7 @@
-﻿using System;
-using System.Text;
-using System.Linq;
-using System.ComponentModel;
-using System.Collections.Generic;
-using Crestron.SimplSharp;                          				// For Basic SIMPL# Classes
+﻿using Crestron.SimplSharp;                          				// For Basic SIMPL# Classes
 using Crestron.SimplSharp.Net.Http;
-using Newtonsoft.Json;
+using System;
+using System.Linq;
 
 namespace PhilipsHue
 {

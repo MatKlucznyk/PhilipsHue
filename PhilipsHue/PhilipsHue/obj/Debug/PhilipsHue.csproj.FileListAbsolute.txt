@@ -1,34 +1,33 @@
-C:\Users\mklucznyk\Documents\Visual Studio 2008\Projects\PhilipsHue\PhilipsHue\bin\PhilipsHue.dll
-C:\Users\mklucznyk\Documents\Visual Studio 2008\Projects\PhilipsHue\PhilipsHue\bin\PhilipsHue.pdb
-C:\Users\mklucznyk\Documents\Visual Studio 2008\Projects\PhilipsHue\PhilipsHue\bin\Newtonsoft.Json.Compact.dll
-C:\Users\mklucznyk\Documents\Visual Studio 2008\Projects\PhilipsHue\PhilipsHue\bin\SimplSharpCustomAttributesInterface.dll
-C:\Users\mklucznyk\Documents\Visual Studio 2008\Projects\PhilipsHue\PhilipsHue\bin\SimplSharpHelperInterface.dll
-C:\Users\mklucznyk\Documents\Visual Studio 2008\Projects\PhilipsHue\PhilipsHue\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\mklucznyk\Documents\Visual Studio 2008\Projects\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.dll
-C:\Users\mklucznyk\Documents\Visual Studio 2008\Projects\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.pdb
-C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\PhilipsHue\bin\PhilipsHue.dll
-C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\PhilipsHue\bin\PhilipsHue.pdb
-C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\PhilipsHue\bin\Newtonsoft.Json.Compact.dll
-C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\PhilipsHue\bin\SimplSharpCustomAttributesInterface.dll
-C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\PhilipsHue\bin\SimplSharpHelperInterface.dll
-C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\PhilipsHue\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.dll
-C:\Users\mklucznyk\Dropbox (Personal)\VS Projects\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.pdb
-\\Mac\Dropbox\VS Projects\PhilipsHue\PhilipsHue\bin\PhilipsHue.dll
-\\Mac\Dropbox\VS Projects\PhilipsHue\PhilipsHue\bin\PhilipsHue.pdb
-\\Mac\Dropbox\VS Projects\PhilipsHue\PhilipsHue\obj\Debug\ResolveAssemblyReference.cache
-\\Mac\Dropbox\VS Projects\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.dll
-\\Mac\Dropbox\VS Projects\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.pdb
-D:\Programming\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\bin\PhilipsHue.dll
-D:\Programming\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\bin\PhilipsHue.pdb
-D:\Programming\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\ResolveAssemblyReference.cache
-D:\Programming\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.dll
-D:\Programming\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.pdb
-C:\Users\mathew.klucznyk\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\bin\PhilipsHue.dll
-C:\Users\mathew.klucznyk\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\bin\PhilipsHue.pdb
-C:\Users\mathew.klucznyk\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\bin\SimplSharpNewtonsoft.dll
-C:\Users\mathew.klucznyk\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\bin\SimplSharpReflectionInterface.dll
-C:\Users\mathew.klucznyk\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\bin\SimplSharpSQLHelperInterface.dll
-C:\Users\mathew.klucznyk\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\mathew.klucznyk\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.dll
-C:\Users\mathew.klucznyk\OneDrive - Global USS\Crestron Modules\Mat\SIMPLSharp Projects\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.pdb
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\PhilipsHue.dll
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\PhilipsHue.pdb
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpAutoUpdateInterface.dll
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpCloudClientInterface.dll
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpCryptographyInterface.dll
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpCustomAttributesInterface.dll
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpCWSHelperInterface.dll
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpExchangeWebServices.dll
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpHelperInterface.dll
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpNewtonsoft.dll
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpOnvifInterface.dll
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpProgrammingInterfaces.dll
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpReflectionInterface.dll
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpSQLHelperInterface.dll
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpTimerEventInterface.dll
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpAutoUpdateInterface.xml
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpCloudClientInterface.xml
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpCryptographyInterface.xml
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpCustomAttributesInterface.xml
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpCWSHelperInterface.xml
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpExchangeWebServices.xml
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpHelperInterface.xml
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpNewtonsoft.xml
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpOnvifInterface.xml
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpProgrammingInterfaces.xml
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpReflectionInterface.xml
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpSQLHelperInterface.xml
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\SimplSharpTimerEventInterface.xml
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.csproj.AssemblyReference.cache
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.csproj.CoreCompileInputs.cache
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.csproj.Up2Date
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.dll
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.pdb

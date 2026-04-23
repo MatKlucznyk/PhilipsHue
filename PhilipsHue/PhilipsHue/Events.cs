@@ -19,10 +19,6 @@ namespace PhilipsHue
         public bool Reachable { get; set; }
         public int ID { get; set; }
 
-        /*public LightDataReceivedEventArgs()
-        {
-        }*/
-
         public LightDataReceivedEventArgs(string name, string model, string type, bool on, ushort bri, ushort hue, ushort sat, IList<string> xy, bool reachable, int id)
         {
             this.Name = name;
@@ -50,10 +46,6 @@ namespace PhilipsHue
         public ushort Sat { get; set; }
         public IList<string> XY { get; set; }
         public int ID { get; set; }
-
-        /* public GroupDataReceivedEventArgs()
-         {
-         }*/
 
         public GroupDataReceivedEventArgs(string name, string type, bool allOn, bool anyOn, bool on, ushort bri, ushort hue, ushort sat, IList<string> xy, int id)
         {
