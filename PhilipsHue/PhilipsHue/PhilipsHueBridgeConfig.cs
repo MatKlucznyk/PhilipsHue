@@ -33,7 +33,7 @@ namespace PhilipsHue
                     u.devicetype = string.Format("crestron#{0}", user);
                     string body = JsonConvert.SerializeObject(u);
 
-                    PhilipsHueBridge.SendCommand(String.Format("{0}api", PhilipsHueBridge.BaseUrl), body, RequestType.Post, 1, 0);
+                    PhilipsHueBridge.SendCommand(String.Format("{0}", PhilipsHueBridge.BaseUrl), body, RequestType.Post, 1, 0);
                 }
                 else GetLights();
             }
@@ -55,7 +55,7 @@ namespace PhilipsHue
         {
             try
             {
-                PhilipsHueBridge.SendCommand(String.Format("{0}api/{1}", PhilipsHueBridge.BaseUrl, PhilipsHueBridge.Username), "", RequestType.Get, 1, 0);
+                PhilipsHueBridge.SendCommand(String.Format("{0}{1}", PhilipsHueBridge.BaseUrl, PhilipsHueBridge.Username), "", RequestType.Get, 1, 0);
             }
 
             catch (Exception e)

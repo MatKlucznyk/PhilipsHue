@@ -166,7 +166,7 @@ namespace PhilipsHue
 
                 newTrace(body);
 
-                PhilipsHueBridge.SendCommand(String.Format("{0}api/{1}/lights/{2}/state", PhilipsHueBridge.BaseUrl, PhilipsHueBridge.Username, ID),
+                PhilipsHueBridge.SendCommand(String.Format("{0}{1}/lights/{2}/state", PhilipsHueBridge.BaseUrl, PhilipsHueBridge.Username, ID),
                     body, RequestType.Put, 2, 0);
             }
 
@@ -185,7 +185,7 @@ namespace PhilipsHue
         /// credentials are properly configured before calling this method.</remarks>
         public void GetLight()
         {
-            PhilipsHueBridge.SendCommand(String.Format("{0}api/{1}/lights/{2}", PhilipsHueBridge.BaseUrl, PhilipsHueBridge.Username, ID), "",
+            PhilipsHueBridge.SendCommand(String.Format("{0}{1}/lights/{2}", PhilipsHueBridge.BaseUrl, PhilipsHueBridge.Username, ID), "",
                 RequestType.Get, 3, ID);
         }
     }

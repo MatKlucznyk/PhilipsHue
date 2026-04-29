@@ -281,13 +281,13 @@ namespace PhilipsHue
 
                 var contentString = response.Content;
 
-                if (contentString.Contains("\"error\":{\"type\":1,\"address\":\"\",\"description\":\"unauthorized user\""))
+                if (contentString.Contains("unauthorized user"))
                 {
                     SendErrorFn("Unauthorized user");
                     return;
                 }
 
-                if (contentString.Contains("\"error\":{\"type\":101,\"address\":\"\",\"description\":\"link button not pressed\""))
+                if (contentString.Contains("link button not pressed"))
                 {
                     SendErrorFn("Press link button on bridge and try again");
                     return;

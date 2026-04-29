@@ -157,7 +157,7 @@ namespace PhilipsHue
                     body = String.Format("{{\"xy\":[{0}, {1}]}}", point.x, point.y);
                 }
 
-                PhilipsHueBridge.SendCommand(String.Format("{0}api/{1}/groups/{2}/action", PhilipsHueBridge.BaseUrl, PhilipsHueBridge.Username, ID),
+                PhilipsHueBridge.SendCommand(String.Format("{0}{1}/groups/{2}/action", PhilipsHueBridge.BaseUrl, PhilipsHueBridge.Username, ID),
                     body, RequestType.Put, 2, 0);
             }
 
@@ -176,7 +176,7 @@ namespace PhilipsHue
         /// scenarios.</remarks>
         public void GetGroup()
         {
-            PhilipsHueBridge.SendCommand(String.Format("{0}api/{1}/groups/{2}", PhilipsHueBridge.BaseUrl, PhilipsHueBridge.Username, ID), "",
+            PhilipsHueBridge.SendCommand(String.Format("{0}{1}/groups/{2}", PhilipsHueBridge.BaseUrl, PhilipsHueBridge.Username, ID), "",
                 RequestType.Get, 4, ID);
         }
     }
