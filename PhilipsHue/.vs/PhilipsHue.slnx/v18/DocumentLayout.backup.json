@@ -3,32 +3,20 @@
   "WorkspaceRootPath": "C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E1465F50-2216-485B-8D7C-3997523AE9F0}|PhilipsHue\\PhilipsHue.csproj|c:\\git\\personal\\philipshue\\philipshue\\philipshue\\philipshuebridgeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1465F50-2216-485B-8D7C-3997523AE9F0}|PhilipsHue\\PhilipsHue.csproj|solutionrelative:philipshue\\philipshuebridgeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E1465F50-2216-485B-8D7C-3997523AE9F0}|PhilipsHue\\PhilipsHue.csproj|c:\\git\\personal\\philipshue\\philipshue\\philipshue\\philipshuebridge.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E1465F50-2216-485B-8D7C-3997523AE9F0}|PhilipsHue\\PhilipsHue.csproj|solutionrelative:philipshue\\philipshuebridge.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1465F50-2216-485B-8D7C-3997523AE9F0}|PhilipsHue\\PhilipsHue.csproj|C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\philipshue\\lightclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E1465F50-2216-485B-8D7C-3997523AE9F0}|PhilipsHue\\PhilipsHue.csproj|c:\\git\\personal\\philipshue\\philipshue\\philipshue\\lightclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E1465F50-2216-485B-8D7C-3997523AE9F0}|PhilipsHue\\PhilipsHue.csproj|solutionrelative:philipshue\\lightclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1465F50-2216-485B-8D7C-3997523AE9F0}|PhilipsHue\\PhilipsHue.csproj|C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\philipshue\\json.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1465F50-2216-485B-8D7C-3997523AE9F0}|PhilipsHue\\PhilipsHue.csproj|solutionrelative:philipshue\\json.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E1465F50-2216-485B-8D7C-3997523AE9F0}|PhilipsHue\\PhilipsHue.csproj|C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\philipshue\\groupclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E1465F50-2216-485B-8D7C-3997523AE9F0}|PhilipsHue\\PhilipsHue.csproj|c:\\git\\personal\\philipshue\\philipshue\\philipshue\\groupclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E1465F50-2216-485B-8D7C-3997523AE9F0}|PhilipsHue\\PhilipsHue.csproj|solutionrelative:philipshue\\groupclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E1465F50-2216-485B-8D7C-3997523AE9F0}|PhilipsHue\\PhilipsHue.csproj|C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\philipshue\\events.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1465F50-2216-485B-8D7C-3997523AE9F0}|PhilipsHue\\PhilipsHue.csproj|solutionrelative:philipshue\\events.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E1465F50-2216-485B-8D7C-3997523AE9F0}|PhilipsHue\\PhilipsHue.csproj|C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\philipshue\\colourconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1465F50-2216-485B-8D7C-3997523AE9F0}|PhilipsHue\\PhilipsHue.csproj|solutionrelative:philipshue\\colourconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E1465F50-2216-485B-8D7C-3997523AE9F0}|PhilipsHue\\PhilipsHue.csproj|C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\philipshue\\philipshuebridgeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1465F50-2216-485B-8D7C-3997523AE9F0}|PhilipsHue\\PhilipsHue.csproj|solutionrelative:philipshue\\philipshuebridgeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 231,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,28 +34,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "LightClient.cs",
-              "DocumentMoniker": "C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\PhilipsHue\\LightClient.cs",
-              "RelativeDocumentMoniker": "PhilipsHue\\LightClient.cs",
-              "ToolTip": "C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\PhilipsHue\\LightClient.cs",
-              "RelativeToolTip": "PhilipsHue\\LightClient.cs",
-              "ViewState": "AgIAAFkAAACAmZmZmZkkwAYAAAABAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "PhilipsHueBridgeConfig.cs",
+              "DocumentMoniker": "C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\PhilipsHue\\PhilipsHueBridgeConfig.cs",
+              "RelativeDocumentMoniker": "PhilipsHue\\PhilipsHueBridgeConfig.cs",
+              "ToolTip": "C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\PhilipsHue\\PhilipsHueBridgeConfig.cs*",
+              "RelativeToolTip": "PhilipsHue\\PhilipsHueBridgeConfig.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-20T20:04:51.947Z",
+              "WhenOpened": "2026-04-29T12:44:32.598Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Json.cs",
-              "DocumentMoniker": "C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\PhilipsHue\\Json.cs",
-              "RelativeDocumentMoniker": "PhilipsHue\\Json.cs",
-              "ToolTip": "C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\PhilipsHue\\Json.cs",
-              "RelativeToolTip": "PhilipsHue\\Json.cs",
-              "ViewState": "AgIAAD4AAAAAZmZmZmYPwAAAAAAAAAAAAAAAAA==",
+              "Title": "LightClient.cs",
+              "DocumentMoniker": "C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\PhilipsHue\\LightClient.cs",
+              "RelativeDocumentMoniker": "PhilipsHue\\LightClient.cs",
+              "ToolTip": "C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\PhilipsHue\\LightClient.cs",
+              "RelativeToolTip": "PhilipsHue\\LightClient.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-20T20:04:47.642Z",
+              "WhenOpened": "2026-04-29T12:42:31.174Z",
               "EditorCaption": ""
             },
             {
@@ -78,61 +66,22 @@
               "RelativeDocumentMoniker": "PhilipsHue\\GroupClient.cs",
               "ToolTip": "C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\PhilipsHue\\GroupClient.cs",
               "RelativeToolTip": "PhilipsHue\\GroupClient.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAD4v2MAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-20T20:04:23.475Z",
+              "WhenOpened": "2026-04-29T12:42:03.171Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Events.cs",
-              "DocumentMoniker": "C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\PhilipsHue\\Events.cs",
-              "RelativeDocumentMoniker": "PhilipsHue\\Events.cs",
-              "ToolTip": "C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\PhilipsHue\\Events.cs",
-              "RelativeToolTip": "PhilipsHue\\Events.cs",
-              "ViewState": "AgIAAFEAAAAAzMzMzMz4vy8AAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-20T20:04:23.952Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ColourConversion.cs",
-              "DocumentMoniker": "C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\PhilipsHue\\ColourConversion.cs",
-              "RelativeDocumentMoniker": "PhilipsHue\\ColourConversion.cs",
-              "ToolTip": "C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\PhilipsHue\\ColourConversion.cs",
-              "RelativeToolTip": "PhilipsHue\\ColourConversion.cs",
-              "ViewState": "AgIAADkBAAAAAAAAAAAQwAIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-20T20:04:11.084Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "PhilipsHueBridgeConfig.cs",
-              "DocumentMoniker": "C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\PhilipsHue\\PhilipsHueBridgeConfig.cs",
-              "RelativeDocumentMoniker": "PhilipsHue\\PhilipsHueBridgeConfig.cs",
-              "ToolTip": "C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\PhilipsHue\\PhilipsHueBridgeConfig.cs",
-              "RelativeToolTip": "PhilipsHue\\PhilipsHueBridgeConfig.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-20T20:02:52.16Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "PhilipsHueBridge.cs",
               "DocumentMoniker": "C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\PhilipsHue\\PhilipsHueBridge.cs",
               "RelativeDocumentMoniker": "PhilipsHue\\PhilipsHueBridge.cs",
-              "ToolTip": "C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\PhilipsHue\\PhilipsHueBridge.cs",
-              "RelativeToolTip": "PhilipsHue\\PhilipsHueBridge.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAA5AAAAAAAAAA==",
+              "ToolTip": "C:\\Git\\Personal\\PhilipsHue\\PhilipsHue\\PhilipsHue\\PhilipsHueBridge.cs*",
+              "RelativeToolTip": "PhilipsHue\\PhilipsHueBridge.cs*",
+              "ViewState": "AgIAAF0AAAAAAAAAAIAcwIAAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-20T20:00:47.284Z",
+              "WhenOpened": "2026-04-29T12:33:47.079Z",
               "EditorCaption": ""
             }
           ]

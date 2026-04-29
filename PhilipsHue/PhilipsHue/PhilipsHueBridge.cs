@@ -1,6 +1,8 @@
-﻿using Crestron.SimplSharp;                          				// For Basic SIMPL# Classes
+﻿using Avg.Communications.Net;
+using Avg.ModuleFramework.Logging;
+using Crestron.SimplSharp;                          				// For Basic SIMPL# Classes
 using Crestron.SimplSharp.CrestronDataStore;
-using Crestron.SimplSharp.Net.Http;
+using Crestron.SimplSharp.Net.Https;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -22,8 +24,18 @@ namespace PhilipsHue
         static public SendLight SendLightFn { get; set; }
         static public SendGroup SendGroupFn { get; set; }
 
-        internal static Dictionary<string, ClientEvents> LightClient = new Dictionary<string, ClientEvents>();
-        internal static Dictionary<string, ClientEvents> GroupClient = new Dictionary<string, ClientEvents>();
+        private static Dictionary<string, ClientEvents> _lightClients = new Dictionary<string, ClientEvents>();
+        private static Dictionary<string, ClientEvents> _groupClients = new Dictionary<string, ClientEvents>();
+        private static HttpsClientPool _httpsClientPool = new HttpsClientPool();
+        private static Logger _logger = new Logger("PhilipsHue");
+
+        internal static string BaseUrl
+        {
+            get
+            {
+                return string.Format("https://{0}/api/", IPAddress);
+            }
+        }
 
         static public void SendConfigHandler(string name, string ver)
         {
@@ -44,11 +56,11 @@ namespace PhilipsHue
         {
             try
             {
-                lock (LightClient)
+                lock (_lightClients)
                 {
-                    if (!LightClient.ContainsKey(Address))
+                    if (!_lightClients.ContainsKey(Address))
                     {
-                        LightClient.Add(Address, new ClientEvents());
+                        _lightClients.Add(Address, new ClientEvents());
                     }
                 }
 
@@ -58,6 +70,23 @@ namespace PhilipsHue
             catch (Exception e)
             {
                 CrestronConsole.PrintLine(e.Message + "\n" + e.StackTrace);
+                return false;
+            }
+        }
+
+        static public bool TryGetLightClient(string Address, out ClientEvents client)
+        {
+            try
+            {
+                lock (_lightClients)
+                {
+                    return _lightClients.TryGetValue(Address, out client);
+                }
+            }
+            catch (Exception e)
+            {
+                CrestronConsole.PrintLine(e.Message + "\n" + e.StackTrace);
+                client = null;
                 return false;
             }
         }
@@ -66,11 +95,11 @@ namespace PhilipsHue
         {
             try
             {
-                lock (GroupClient)
+                lock (_groupClients)
                 {
-                    if (!GroupClient.ContainsKey(Address))
+                    if (!_groupClients.ContainsKey(Address))
                     {
-                        GroupClient.Add(Address, new ClientEvents());
+                        _groupClients.Add(Address, new ClientEvents());
                     }
                 }
 
@@ -84,34 +113,47 @@ namespace PhilipsHue
             }
         }
 
+        static public bool TryGetGroupClient(string Address, out ClientEvents client)
+        {
+            try
+            {
+                lock (_groupClients)
+                {
+                    return _groupClients.TryGetValue(Address, out client);
+                }
+            }
+            catch (Exception e)
+            {
+                CrestronConsole.PrintLine(e.Message + "\n" + e.StackTrace);
+                client = null;
+                return false;
+            }
+        }
+
         static public void SendCommand(string url, string body, RequestType requestType, int type, int ID)
         {
             try
             {
-                var contentString = string.Empty;
-                using (HttpClient client = new HttpClient())
+                var request = new HttpsClientRequest()
                 {
-                    HttpClientRequest request = new HttpClientRequest();
+                    RequestType = requestType,
+                    ContentString = body
+                };
 
-                    client.TimeoutEnabled = true;
-                    client.Timeout = 10;
-                    request.RequestType = requestType;
-                    request.Url.Parse(url);
-                    request.ContentString = body;
+                request.Url.Parse(url);
 
-                    HttpClientResponse response = client.Dispatch(request);
+                var response = _httpsClientPool.SendRequest(Crestron.SimplSharp.Net.AuthMethod.NONE, string.Empty, string.Empty, request, _logger);
 
                     if (response == null)
                         return;
 
-                    if (response.Code != 200)
+                    if (response.Status != 200)
                     {
-                        SendErrorFn("Error code: " + response.Code);
+                        SendErrorFn("Error code: " + response.Status);
                         return;
                     }
 
-                    contentString = response.ContentString;
-                }
+                var contentString = response.Content;
 
                 if (contentString.Contains("\"error\":{\"type\":1,\"address\":\"\",\"description\":\"unauthorized user\""))
                 {
@@ -149,11 +191,11 @@ namespace PhilipsHue
                         {
                             SendLightFn((ushort)item.Key, DD.lights[item.Key].name);
 
-                            if (LightClient.ContainsKey(DD.lights[item.Key].name))
+                            if (_lightClients.ContainsKey(DD.lights[item.Key].name))
                             {
                                 if (DD.lights[item.Key].state.hue > 0 || DD.lights[item.Key].state.sat > 0)
                                 {
-                                    LightClient[DD.lights[item.Key].name].FireOnLightDataChange(new LightDataReceivedEventArgs(DD.lights[item.Key].name, DD.lights[item.Key].modelid, DD.lights[item.Key].type, DD.lights[item.Key].state.on,
+                                    _lightClients[DD.lights[item.Key].name].FireOnLightDataChange(new LightDataReceivedEventArgs(DD.lights[item.Key].name, DD.lights[item.Key].modelid, DD.lights[item.Key].type, DD.lights[item.Key].state.on,
                                         DD.lights[item.Key].state.bri, DD.lights[item.Key].state.hue, DD.lights[item.Key].state.sat, DD.lights[item.Key].state.xy, DD.lights[item.Key].state.reachable, item.Key));
                                 }
 
@@ -163,7 +205,7 @@ namespace PhilipsHue
                                     empty.Add("0.0");
                                     empty.Add("0.0");
 
-                                    LightClient[DD.lights[item.Key].name].FireOnLightDataChange(new LightDataReceivedEventArgs(DD.lights[item.Key].name, DD.lights[item.Key].modelid, DD.lights[item.Key].type, DD.lights[item.Key].state.on,
+                                    _lightClients[DD.lights[item.Key].name].FireOnLightDataChange(new LightDataReceivedEventArgs(DD.lights[item.Key].name, DD.lights[item.Key].modelid, DD.lights[item.Key].type, DD.lights[item.Key].state.on,
                                         DD.lights[item.Key].state.bri, 0, 0, empty, DD.lights[item.Key].state.reachable, item.Key));
                                 }
                             }
@@ -173,11 +215,11 @@ namespace PhilipsHue
                         {
                             SendGroupFn((ushort)item.Key, DD.groups[item.Key].name);
 
-                            if (GroupClient.ContainsKey(DD.groups[item.Key].name))
+                            if (_groupClients.ContainsKey(DD.groups[item.Key].name))
                             {
                                 if (DD.groups[item.Key].action.hue > 0 || DD.groups[item.Key].action.sat > 0)
                                 {
-                                    GroupClient[DD.groups[item.Key].name].FireOnGroupDataChange(new GroupDataReceivedEventArgs(DD.groups[item.Key].name, DD.groups[item.Key].type, DD.groups[item.Key].state.all_on,
+                                    _groupClients[DD.groups[item.Key].name].FireOnGroupDataChange(new GroupDataReceivedEventArgs(DD.groups[item.Key].name, DD.groups[item.Key].type, DD.groups[item.Key].state.all_on,
                                     DD.groups[item.Key].state.any_on, DD.groups[item.Key].action.on, DD.groups[item.Key].action.bri, DD.groups[item.Key].action.hue, DD.groups[item.Key].action.sat,
                                     DD.groups[item.Key].action.xy, item.Key));
                                 }
@@ -188,7 +230,7 @@ namespace PhilipsHue
                                     empty.Add("0.0");
                                     empty.Add("0.0");
 
-                                    GroupClient[DD.groups[item.Key].name].FireOnGroupDataChange(new GroupDataReceivedEventArgs(DD.groups[item.Key].name, DD.groups[item.Key].type, DD.groups[item.Key].state.all_on,
+                                    _groupClients[DD.groups[item.Key].name].FireOnGroupDataChange(new GroupDataReceivedEventArgs(DD.groups[item.Key].name, DD.groups[item.Key].type, DD.groups[item.Key].state.all_on,
                                         DD.groups[item.Key].state.any_on, DD.groups[item.Key].action.on, DD.groups[item.Key].action.bri, 0, 0, empty, item.Key));
                                 }
                             }
@@ -198,13 +240,13 @@ namespace PhilipsHue
                     case 3:
                         var L = JsonConvert.DeserializeObject<Lights>(contentString);
 
-                        LightClient[L.name].FireOnLightDataChange(new LightDataReceivedEventArgs(L.name, L.modelid, L.type, L.state.on, L.state.bri, L.state.hue, L.state.sat, L.state.xy, L.state.reachable, ID));
+                        _lightClients[L.name].FireOnLightDataChange(new LightDataReceivedEventArgs(L.name, L.modelid, L.type, L.state.on, L.state.bri, L.state.hue, L.state.sat, L.state.xy, L.state.reachable, ID));
                         break;
 
                     case 4:
                         var G = JsonConvert.DeserializeObject<Groups>(contentString);
 
-                        GroupClient[G.name].FireOnGroupDataChange(new GroupDataReceivedEventArgs(G.name, G.type, G.state.all_on, G.state.any_on, G.action.on, G.action.bri, G.action.hue, G.action.sat, G.action.xy, ID));
+                        _groupClients[G.name].FireOnGroupDataChange(new GroupDataReceivedEventArgs(G.name, G.type, G.state.all_on, G.state.any_on, G.action.on, G.action.bri, G.action.hue, G.action.sat, G.action.xy, ID));
                         break;
                 }
             }
@@ -212,7 +254,7 @@ namespace PhilipsHue
             {
                 ErrorLog.Exception(se.Message, se);
             }
-            catch (HttpException he)
+            catch (HttpsException he)
             {
                 ErrorLog.Exception(he.Message, he);
             }

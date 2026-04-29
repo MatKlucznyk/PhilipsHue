@@ -1,6 +1,6 @@
 ﻿using Crestron.SimplSharp;
 using Crestron.SimplSharp.CrestronDataStore;
-using Crestron.SimplSharp.Net.Http;
+using Crestron.SimplSharp.Net.Https;
 using Newtonsoft.Json;
 using System;
 
@@ -18,7 +18,7 @@ namespace PhilipsHue
                     u.devicetype = string.Format("crestron#{0}", user);
                     string body = JsonConvert.SerializeObject(u);
 
-                    PhilipsHueBridge.SendCommand(String.Format("http://{0}/api", PhilipsHueBridge.IPAddress/*, PhilipsHueBridge.Username*/), body, RequestType.Post, 1, 0);
+                    PhilipsHueBridge.SendCommand(String.Format("{0}api", PhilipsHueBridge.BaseUrl), body, RequestType.Post, 1, 0);
                 }
                 else GetLights();
             }
@@ -33,7 +33,7 @@ namespace PhilipsHue
         {
             try
             {
-                PhilipsHueBridge.SendCommand(String.Format("http://{0}/api/{1}", PhilipsHueBridge.IPAddress, PhilipsHueBridge.Username), "", RequestType.Get, 1, 0);
+                PhilipsHueBridge.SendCommand(String.Format("{0}api/{1}", PhilipsHueBridge.BaseUrl, PhilipsHueBridge.Username), "", RequestType.Get, 1, 0);
             }
 
             catch (Exception e)

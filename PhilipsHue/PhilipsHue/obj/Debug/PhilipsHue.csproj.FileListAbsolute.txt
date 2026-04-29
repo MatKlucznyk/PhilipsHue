@@ -31,3 +31,5 @@ C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.csproj.Cor
 C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.csproj.Up2Date
 C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.dll
 C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\obj\Debug\PhilipsHue.pdb
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\Avg.Communications.dll
+C:\Git\Personal\PhilipsHue\PhilipsHue\PhilipsHue\bin\Debug\Avg.ModuleFramework.dll

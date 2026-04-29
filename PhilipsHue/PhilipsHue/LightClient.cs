@@ -1,5 +1,5 @@
 ﻿using Crestron.SimplSharp;                          				// For Basic SIMPL# Classes
-using Crestron.SimplSharp.Net.Http;
+using Crestron.SimplSharp.Net.Https;
 using System;
 using System.Linq;
 
@@ -41,13 +41,16 @@ namespace PhilipsHue
             {
                 if (this._address != value)
                 {
-                    if (PhilipsHueBridge.LightClient.ContainsKey(Address))
-                        PhilipsHueBridge.LightClient[Address].OnLightDataReceived -= HandleReceiveData;
+                    if (PhilipsHueBridge.TryGetLightClient(Address, out var client))
+                        client.OnLightDataReceived -= HandleReceiveData;
 
                     this._address = value;
 
                     if (PhilipsHueBridge.RegisterLightClient(Address))
-                        PhilipsHueBridge.LightClient[Address].OnLightDataReceived += HandleReceiveData;
+                    {
+                        PhilipsHueBridge.TryGetLightClient(Address, out var newClient);
+                        newClient.OnLightDataReceived += HandleReceiveData;
+                    }
                 }
             }
         }
@@ -105,7 +108,7 @@ namespace PhilipsHue
 
                 newTrace(body);
 
-                PhilipsHueBridge.SendCommand(String.Format("http://{0}/api/{1}/lights/{2}/state", PhilipsHueBridge.IPAddress, PhilipsHueBridge.Username, ID),
+                PhilipsHueBridge.SendCommand(String.Format("{0}api/{1}/lights/{2}/state", PhilipsHueBridge.BaseUrl, PhilipsHueBridge.Username, ID),
                     body, RequestType.Put, 2, 0);
             }
 
@@ -117,7 +120,7 @@ namespace PhilipsHue
 
         public void GetLight()
         {
-            PhilipsHueBridge.SendCommand(String.Format("http://{0}/api/{1}/lights/{2}", PhilipsHueBridge.IPAddress, PhilipsHueBridge.Username, ID), "",
+            PhilipsHueBridge.SendCommand(String.Format("{0}api/{1}/lights/{2}", PhilipsHueBridge.BaseUrl, PhilipsHueBridge.Username, ID), "",
                 RequestType.Get, 3, ID);
         }
     }

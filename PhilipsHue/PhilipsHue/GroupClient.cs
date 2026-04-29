@@ -1,11 +1,7 @@
-﻿using System;
-using System.Text;
+﻿using Crestron.SimplSharp;                          				// For Basic SIMPL# Classes
+using Crestron.SimplSharp.Net.Https;
+using System;
 using System.Linq;
-using System.ComponentModel;
-using System.Collections.Generic;
-using Crestron.SimplSharp;                          				// For Basic SIMPL# Classes
-using Crestron.SimplSharp.Net.Http;
-using Newtonsoft.Json;
 
 namespace PhilipsHue
 {
@@ -41,13 +37,16 @@ namespace PhilipsHue
             {
                 if (this._address != value)
                 {
-                    if (PhilipsHueBridge.GroupClient.ContainsKey(Address))
-                        PhilipsHueBridge.GroupClient[Address].OnGroupDataReceived -= HandleReceiveData;
+                    if (PhilipsHueBridge.TryGetGroupClient(Address, out var client))
+                        client.OnGroupDataReceived -= HandleReceiveData;
 
                     this._address = value;
 
                     if (PhilipsHueBridge.RegisterGroupClient(Address))
-                        PhilipsHueBridge.GroupClient[Address].OnGroupDataReceived += HandleReceiveData;
+                    {
+                        PhilipsHueBridge.TryGetGroupClient(Address, out var newClient);
+                        newClient.OnGroupDataReceived += HandleReceiveData;
+                    }
                 }
             }
         }
@@ -99,7 +98,7 @@ namespace PhilipsHue
                     body = String.Format("{{\"xy\":[{0}, {1}]}}", point.x, point.y);
                 }
 
-                PhilipsHueBridge.SendCommand(String.Format("http://{0}/api/{1}/groups/{2}/action", PhilipsHueBridge.IPAddress, PhilipsHueBridge.Username, ID),
+                PhilipsHueBridge.SendCommand(String.Format("{0}api/{1}/groups/{2}/action", PhilipsHueBridge.BaseUrl, PhilipsHueBridge.Username, ID),
                     body, RequestType.Put, 2, 0);
             }
 
@@ -111,7 +110,7 @@ namespace PhilipsHue
 
         public void GetGroup()
         {
-            PhilipsHueBridge.SendCommand(String.Format("http://{0}/api/{1}/groups/{2}", PhilipsHueBridge.IPAddress, PhilipsHueBridge.Username, ID), "",
+            PhilipsHueBridge.SendCommand(String.Format("{0}api/{1}/groups/{2}", PhilipsHueBridge.BaseUrl, PhilipsHueBridge.Username, ID), "",
                 RequestType.Get, 4, ID);
         }
     }
