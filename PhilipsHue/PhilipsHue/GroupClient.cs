@@ -5,16 +5,53 @@ using System.Linq;
 
 namespace PhilipsHue
 {
+    /// <summary>
+    /// Represents a Philips Hue group and provides methods and events for interacting with and controlling the group's
+    /// state via a Philips Hue Bridge.
+    /// </summary>
+    /// <remarks>This class enables communication with a specific Philips Hue group, allowing retrieval and
+    /// modification of group state such as power, brightness, hue, saturation, and color. It exposes events for
+    /// receiving group data updates and provides integration points for handling group information changes. Thread
+    /// safety is not guaranteed; callers should ensure appropriate synchronization if accessing instances from multiple
+    /// threads.</remarks>
     public class PhilipsHueGroup
     {
-        public GroupInfo newGroupInfo { get; set; }
+        /// <summary>
+        /// Represents a method that receives detailed information about a lighting group, including its name, type,
+        /// on/off status, and color attributes.
+        /// </summary>
+        /// <remarks>This delegate is typically used to provide status updates or query results for
+        /// lighting groups in smart lighting systems. The color and brightness parameters reflect the current state of
+        /// the group and may be averaged or representative values if the group contains multiple lights.</remarks>
+        /// <param name="name">The name of the group.</param>
+        /// <param name="type">The type of the group, such as 'Room' or 'Zone'.</param>
+        /// <param name="allon">A string indicating whether all lights in the group are on.</param>
+        /// <param name="anyOn">A string indicating whether any light in the group is on.</param>
+        /// <param name="on">A string representing the overall on/off state of the group.</param>
+        /// <param name="bri">The brightness level of the group, as a value between 0 and 254.</param>
+        /// <param name="hue">The hue value of the group, as a value between 0 and 65535.</param>
+        /// <param name="sat">The saturation level of the group, as a value between 0 and 254.</param>
+        /// <param name="red">The red component of the group's color, as a value between 0 and 255.</param>
+        /// <param name="green">The green component of the group's color, as a value between 0 and 255.</param>
+        /// <param name="blue">The blue component of the group's color, as a value between 0 and 255.</param>
         public delegate void GroupInfo(SimplSharpString name, SimplSharpString type, SimplSharpString allon, SimplSharpString anyOn, SimplSharpString on,
             ushort bri, ushort hue, ushort sat, ushort red, ushort green, ushort blue);
+
+        /// <summary>
+        /// Gets or sets information about the newly created group.
+        /// </summary>
+        public GroupInfo newGroupInfo { get; set; }
 
         private int ID;
 
         private event EventHandler<GroupDataReceivedEventArgs> _OnGroupDataReceived = delegate { };
 
+        /// <summary>
+        /// Occurs when group data is received from the data source.
+        /// </summary>
+        /// <remarks>Subscribe to this event to handle incoming group data as it becomes available. Event
+        /// handlers receive a <see cref="GroupDataReceivedEventArgs"/> instance containing the group data
+        /// details.</remarks>
         public event EventHandler<GroupDataReceivedEventArgs> OnGroupDataReceived
         {
             add
@@ -30,21 +67,27 @@ namespace PhilipsHue
 
         private string _address = "";
 
+        /// <summary>
+        /// Gets or sets the network address associated with the group client connection.
+        /// </summary>
+        /// <remarks>Changing the address will unregister the previous group client and register a new one
+        /// for the specified address. This may affect event subscriptions and group data reception.</remarks>
         public string Address
         {
             get { return _address; }
             set
             {
-                if (this._address != value)
+                var address = _address;
+                if (address != value)
                 {
-                    if (PhilipsHueBridge.TryGetGroupClient(Address, out var client))
+                    if (PhilipsHueBridge.TryGetGroupClient(address, out var client))
                         client.OnGroupDataReceived -= HandleReceiveData;
 
-                    this._address = value;
+                    _address = value;
 
-                    if (PhilipsHueBridge.RegisterGroupClient(Address))
+                    if (PhilipsHueBridge.RegisterGroupClient(value))
                     {
-                        PhilipsHueBridge.TryGetGroupClient(Address, out var newClient);
+                        PhilipsHueBridge.TryGetGroupClient(value, out var newClient);
                         newClient.OnGroupDataReceived += HandleReceiveData;
                     }
                 }
@@ -72,6 +115,22 @@ namespace PhilipsHue
 
         }
 
+        /// <summary>
+        /// Sends a state change command to a Philips Hue group based on the specified type and state values.
+        /// </summary>
+        /// <remarks>This method constructs and sends a command to the Philips Hue Bridge to update the
+        /// state of a group. For color changes using the "xy" type, all three state parameters are required and
+        /// interpreted as RGB color components. For other types, only <paramref name="state1"/> is used. The method
+        /// does not throw exceptions but logs errors to the console.</remarks>
+        /// <param name="type">The type of group state to set. Supported values are "on", "bri", "hue", "sat", and "xy". Each type
+        /// determines how the state parameters are interpreted.</param>
+        /// <param name="state1">The primary state value to apply. Its meaning depends on the value of <paramref name="type"/>. For example,
+        /// for "on", use 0 for off and 1 for on; for "bri", "hue", or "sat", provide the corresponding value; for "xy",
+        /// represents the red color component (0–255).</param>
+        /// <param name="state2">The secondary state value, used only when <paramref name="type"/> is "xy". Represents the green color
+        /// component (0–255). Ignored for other types.</param>
+        /// <param name="state3">The tertiary state value, used only when <paramref name="type"/> is "xy". Represents the blue color
+        /// component (0–255). Ignored for other types.</param>
         public void GroupState(string type, ushort state1, ushort state2, ushort state3)
         {
             try
@@ -108,6 +167,13 @@ namespace PhilipsHue
             }
         }
 
+        /// <summary>
+        /// Sends a request to retrieve information about the current group from the Philips Hue Bridge.
+        /// </summary>
+        /// <remarks>This method communicates with the Philips Hue Bridge using the configured base URL,
+        /// username, and group ID. It does not return a value; any response handling must be implemented separately.
+        /// This method may trigger network activity and should be used accordingly in performance-sensitive
+        /// scenarios.</remarks>
         public void GetGroup()
         {
             PhilipsHueBridge.SendCommand(String.Format("{0}api/{1}/groups/{2}", PhilipsHueBridge.BaseUrl, PhilipsHueBridge.Username, ID), "",
