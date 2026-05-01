@@ -1,0 +1,52 @@
+name: Pack and Publish NuGet Package
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  packages: write
+  contents: read
+
+jobs:
+  pack-and-publish:
+    runs-on: windows-latest
+
+    env:
+      REPO_NAME: ${{ github.event.repository.name }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Check for nuspec file
+        id: check-nuspec
+        run: |
+          if (Test-Path "${{ env.REPO_NAME }}.nuspec") {
+            echo "nuspec-exists=true" >> $env:GITHUB_OUTPUT
+            Write-Host "Found nuspec file: ${{ env.REPO_NAME }}.nuspec"
+          } else {
+            echo "nuspec-exists=false" >> $env:GITHUB_OUTPUT
+            Write-Host "No nuspec file found: ${{ env.REPO_NAME }}.nuspec"
+          }
+
+      - name: Setup NuGet.exe for use with actions
+        if: steps.check-nuspec.outputs.nuspec-exists == 'true'
+        uses: NuGet/setup-nuget@v2.0.1
+        
+      - name: Pack .nupkg from local DLL
+        if: steps.check-nuspec.outputs.nuspec-exists == 'true'
+        run: nuget pack "${{ env.REPO_NAME }}.nuspec"
+
+      - uses: actions/setup-dotnet@v4
+        if: steps.check-nuspec.outputs.nuspec-exists == 'true'
+
+      - name: Create nuget.config with GitHub credentials
+        if: steps.check-nuspec.outputs.nuspec-exists == 'true'
+        shell: bash
+        run: dotnet nuget add source --username  ${{github.actor}} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/Aligned-Vision-Group-Programming/index.json"
+        
+      - name: Push to GitHub Packages
+        if: steps.check-nuspec.outputs.nuspec-exists == 'true'
+        run: dotnet nuget push "${{ env.REPO_NAME }}.*.nupkg" --source "github" 

@@ -1,0 +1,3 @@
+[submodule ".vscode"]
+	path = .vscode
+	url = https://github.com/Aligned-Vision-Group-Programming/crestron-vscode-tasks.git

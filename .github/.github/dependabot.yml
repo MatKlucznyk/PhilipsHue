@@ -1,0 +1,34 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  - package-ecosystem: "nuget" # See documentation for possible values
+
+    # Specify all directories from the current layer and below recursively,
+    # using globstar, for locations of manifest files
+    directories:
+      - "**/*"
+    schedule:
+      interval: "monthly"
+    registries:
+      - nuget-org
+      - github-nuget
+      
+  - package-ecosystem: "gitsubmodule"
+    directories:
+      - "**/*"
+    schedule:
+      interval: "monthly"
+
+registries:
+  nuget-org:
+    type: "nuget-feed"
+    url: "https://api.nuget.org/v3/index.json"
+
+  github-nuget:
+    type: "nuget-feed"
+    url: "https://nuget.pkg.github.com/Aligned-Vision-Group-Programming/index.json"
+    token: "${{secrets.ALL_REPOS_PACKAGES_MAT}}"

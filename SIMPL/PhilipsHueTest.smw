@@ -737,20 +737,6 @@ Sy1=0
 Mx1=0
 ]
 [
-ObjTp=Bw
-H=1
-Lx=0
-Ly=0
-Rx=1610
-Ry=1315
-Xm=-1
-Ym=-1
-SH=8
-Z=100
-Ht=1
-Hi=1
-]
-[
 ObjTp=Et
 H=1
 DvH=511
@@ -868,7 +854,7 @@ Cmn1=EO4S InterProgram
 ObjTp=Sm
 H=8
 SmC=155
-Nm=MK - Philips Hue Bridge v1.2.umc
+Nm=Philips Hue Bridge v2.0.0.umc
 ObjVer=1
 PrH=4
 CF=2
@@ -1100,7 +1086,7 @@ GrpStO108=6
 ObjTp=Sm
 H=9
 SmC=155
-Nm=MK - Philips Hue Group v1.2.umc
+Nm=Philips Hue Group v2.0.0.umc
 ObjVer=1
 PrH=4
 CF=2
@@ -1168,7 +1154,7 @@ P1=255d
 ObjTp=Sm
 H=11
 SmC=155
-Nm=MK - Philips Hue Light v1.2.umc
+Nm=Philips Hue Light v2.0.0.umc
 ObjVer=1
 PrH=4
 CF=2

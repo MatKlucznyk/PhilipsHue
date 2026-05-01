@@ -1,0 +1,65 @@
+#CATEGORY "0" //hidden
+
+#USER_SIMPLSHARP_LIBRARY "PhilipsHue"
+
+//****DIRECTIVES****
+#DEFAULT_VOLATILE
+#ENABLE_STACK_CHECKING
+
+//****IO****
+Digital_Input Link, GetLights;
+String_Input IPAddress[16], Username[1000];
+
+Digital_Output IsLinked;
+String_Output BridgeName, BridgeVersion, Status, LightName[50], GroupName[50,50];
+
+//****VARS****
+PhilipsHueBridgeConfig BridgeConfig;
+
+//****FUNCTIONS****
+Callback Function ReceiveConfig(string sName, string sVersion)
+{
+	BridgeName = sName;
+	BridgeVersion = sVersion;
+	IsLinked = ON;
+}
+
+Callback Function ReceiveError(string sError)
+{
+	Status = sError;
+}
+
+Callback Function ReceiveLight(integer nID, string sName)
+{
+	LightName[nID] = sName;
+}
+
+Callback Function ReceiveGroup(integer nID, string sName)
+{
+	GroupName[nID] = sName;
+}
+
+//****EVENTS****
+Push Link
+{
+	BridgeConfig.Link(Username);
+}
+
+Push GetLights
+{ 
+	BridgeConfig.GetLights();
+}      
+
+Change IPAddress
+{            
+	PhilipsHueBridge.IPAddress = IPAddress;
+}
+
+//**MAIN**
+Function Main()
+{
+	RegisterDelegate(PhilipsHueBridge, SendConfigFn, ReceiveConfig);
+	RegisterDelegate(PhilipsHueBridge, SendErrorFn, ReceiveError);
+	RegisterDelegate(PhilipsHueBridge, SendLightFn, ReceiveLight);
+	RegisterDelegate(PhilipsHueBridge, SendGroupFn, ReceiveGroup); 
+}
